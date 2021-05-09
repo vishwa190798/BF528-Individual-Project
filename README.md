@@ -24,7 +24,7 @@ Dependencies: python3, rseqc, samtools, R
 
 Execution: `qsub run_RSeQC.qsub`
 
-Output: geneBody_coverage plot, inner_distance plot, one quality control metrice
+Output: geneBody_coverage plot, inner_distance plot, one quality control matrix
 
 ### run_cufflinks.qsub
 

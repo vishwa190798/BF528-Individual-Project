@@ -28,7 +28,7 @@ Output: geneBody_coverage plot, inner_distance plot, one quality control matrix
 
 ### run_cufflinks.qsub
 
-Input: accepted_hits.bam file and mm9.gtf and mm9.fa
+Input: accepted_hits.bam file, mm9.gtf and mm9.fa
 
 Dependencies: python3, cufflinks, R
 

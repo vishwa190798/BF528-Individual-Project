@@ -12,39 +12,39 @@ Input: P0_1_1.fastq, P0_1_2.fastq, mm9 reference genome
 
 Dependencies: python2, Bowtie2, topHat, samtools
 
-Execution: `run_tophat(1).qsub`
+Execution: `qsub run_tophat(1).qsub`
 
 Output: accepted_hits.bam file
 
 ### run_RSeQC.qsub
 
-Input: accepted_hits.bam, mm9.bed
+Input: accepted_hits.bam, accepted_hits.bam.bai, mm9.bed
 
 Dependencies: python3, rseqc, samtools, R
 
-Execution: run_RSeQC.qsub
+Execution: `qsub run_RSeQC.qsub`
 
 Output: geneBody_coverage plot, inner_distance plot, one quality control metrice
 
 ### run_cufflinks.qsub
 
-Input:
+Input: accepted_hits.bam file and mm9.gtf and mm9.fa
 
-Dependencies: 
+Dependencies: python3, cufflinks, R
 
-Execution:
+Execution: `qsub run_cufflinks.qsub`
 
-Output:
+Output: gene.FPKM_tracing
 
 ### run_cuffdiff.qsub
 
-Input:
+Input: accepted_hits.bam files for P0_1, P0_2, AD_1, AD_2
 
-Dependencies:
+Dependencies: cufflinks
 
-Execution:
+Execution: `qsub run_cuffdiff.qsub`
 
-Output:
+Output: gene_exp.diff
 
 ### FPKMhistogram.R
 
@@ -53,6 +53,12 @@ Input: genes.FPKM_tracing
 Dependencies: tidyverse package
 
 Execution: It is recommended to run this code on R studio
+
+Alternatively to run on command line:
+
+      module load R/4.0.2
+
+      Rscript FPKMhistogram.R
 
 Output: A histogram for FPKM values of all genes
 
@@ -65,5 +71,11 @@ Input: genes.FPKM_tracing files for P0_1, P0_2, AD_1, AD_2, P4_1, P4_2, P7_1, P7
 Dependencies: pheatmap, tidyverse, gplots, gridExtra packages
 
 Execution: It is recommended to run this code on R studio
+
+Alternatively to run on command line:
+
+      module load R/4.0.2
+
+      Rscript Biologist.R
 
 Output: A line graph with FPKM values of representative Sarcomere, Mitochondria and cell cycle genes which were significant and differentially expressed and a clustered heatmap of top 1000 DEG
